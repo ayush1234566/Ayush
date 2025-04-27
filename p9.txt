@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void selectionSort(int arr[], int n) {
+    int i, j, minindex, temp;
+    for (i = 0; i < n - 1; i++) {
+        minindex = i;
+        for (j = i + 1; j < n; j++) {
+            if (arr[j] < arr[minindex]) {
+                minindex = j;
+            }
+        }
+        temp = arr[minindex];
+        arr[minindex] = arr[i];
+        arr[i] = temp;
+    }
+}
+
+int generateRandomNumber() {
+    return rand() % 1000;
+}
+
+int main() {
+    int n = 6000;
+    int* arr = (int*)malloc(n * sizeof(int));
+    srand(time(NULL));
+
+    printf("Random numbers for n = %d:\n", n);
+    for (int i = 0; i < n; i++) {
+        arr[i] = generateRandomNumber();
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    clock_t start = clock();
+    selectionSort(arr, n);
+    clock_t end = clock();
+
+    double time_taken = ((double)(end - start)) / CLOCKS_PER_SEC;
+    printf("Sorted numbers for n = %d:\n", n);
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n\nTime taken to sort: %f seconds\n", time_taken);
+
+    free(arr); 
+    return 0;
+}
