@@ -1,0 +1,23 @@
+#include <lpc21xx.h>
+
+char src[] = "Hello";
+char dest[100];
+
+void caseConvert() {
+    unsigned int i;
+    for (i = 0; src[i] != '\0'; i++) {
+        if (src[i] >= 'a' && src[i] <= 'z') {
+            dest[i] = src[i] - 32;
+        } else if (src[i] >= 'A' && src[i] <= 'Z') {
+            dest[i] = src[i] + 32;
+        } else {
+            dest[i] = src[i];
+        }
+    }
+    dest[i] = '\0';
+}
+
+int main() {
+    caseConvert();
+    while (1);
+}

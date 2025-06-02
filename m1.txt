@@ -1,0 +1,15 @@
+        AREA reg, CODE, READONLY
+        ENTRY
+
+        MOV     R0, #0x56
+        MOV     R1, #0x89
+        LDR     R5, =DATA
+        LDRH    R3, [R5]
+        LDRH    R4, [R5, #2]
+        MRS     R6, CPSR
+
+STOP    B       STOP
+
+DATA    DCW     0x1234, 0x6789
+
+        END
